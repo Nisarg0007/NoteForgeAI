@@ -1,0 +1,500 @@
+/* ============================================================NOTEFORGE AI — FINAL DARK UI THEME (Clean + Neon Scrollbar)============================================================ */
+/* ---------- Root variables ---------- */
+:root {
+	--bg: #0d1117;
+	--panel: #0f1724;
+	--muted: #9aa4c7;
+	--accent1: #7b5cff;
+	--accent2: #4f8cff;
+	--glass: rgba(255,255,255,0.04);
+	--text: #e6e6e6;
+	--card-glow: 0 18px 60px rgba(79,140,255,0.12);
+}
+/* ---------- Base reset ---------- */
+* {
+	box-sizing: border-box;
+}
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #05080f;
+}
+body {
+	font-family: Inter, ui-sans-serif, -apple-system, "Segoe UI", Roboto;
+	background:radial-gradient(900px 450px at 6% 6%, rgba(111,76,255,0.14), transparent 30%),linear-gradient(180deg, var(--bg), #030712 140%);
+	color: var(--text);
+	-webkit-font-smoothing: antialiased;
+}
+/* ---------- Header ---------- */
+.site-header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 18px 28px;
+	background: linear-gradient(90deg, rgba(111,76,255,0.08), rgba(79,140,255,0.05));
+	border-bottom: 1px solid rgba(255,255,255,0.02);
+	backdrop-filter: blur(10px);
+	position: sticky;
+	top: 0;
+	z-index: 40;
+}
+.header-left {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+}
+.app-icon {
+	width: 48px;
+	height: 48px;
+	border-radius: 12px;
+	padding: 0 !important;
+	margin: 0 !important;
+	object-fit: cover !important;
+	/* FORCE fill */
+	object-position: center !important;
+	background: none !important;
+	display: block;
+	overflow: hidden !important;
+}
+.brand-title {
+	font-size: 20px;
+	font-weight: 800;
+	color: #ffffff;
+}
+.accent-ai {
+	font-weight: 800;
+	background: linear-gradient(90deg, #d18aff, #7b5cff);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: 0px 0px 14px rgba(170, 90, 255, 0.4);
+}
+.brand-sub {
+	font-size: 12px;
+	color: var(--muted);
+}
+.github-btn {
+	color: var(--muted);
+	text-decoration: none;
+	padding: 8px;
+	border-radius: 8px;
+	border: 1px solid rgba(255,255,255,0.03);
+}
+.github-btn:hover {
+	color: white;
+	border-color: var(--accent2);
+}
+/* ---------- Dashboard layout ---------- */
+.dashboard {
+	max-width: 1180px;
+	margin: 20px auto;
+	padding: 0 18px;
+	display: flex;
+	gap: 18px;
+	align-items: stretch;
+}
+/* ---------- Panels ---------- */
+.panel {
+	background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0.01));
+	border-radius: 12px;
+	padding: 18px;
+	border: 1px solid rgba(255,255,255,0.03);
+	box-shadow: 0 10px 30px rgba(0,0,0,0.55);
+}
+.floating {
+	transition: transform .27s cubic-bezier(.2,.9,.2,1), box-shadow .27s;
+}
+.floating:hover {
+	transform: translateY(-6px) scale(1.003);
+	box-shadow: 0 22px 70px rgba(0,0,0,0.6), var(--card-glow);
+}
+/* ---------- Controls panel (left) ---------- */
+.controls-panel {
+	width: 380px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+.panel-title {
+	font-size: 13px;
+	color: var(--muted);
+	margin-bottom: 6px;
+}
+.option-row {
+	display: flex;
+	gap: 8px;
+}
+.option {
+	padding: 8px 12px;
+	background: #09131e;
+	border: 1px solid rgba(255,255,255,0.03);
+	border-radius: 10px;
+	color: var(--muted);
+	cursor: pointer;
+}
+.option.active {
+	background: linear-gradient(90deg, var(--accent1), var(--accent2));
+	color: white;
+	box-shadow: 0 10px 30px rgba(79,140,255,0.14);
+	border: none;
+}
+/* ---------- Input + Upload UI ---------- */
+.input-tabs {
+	display:flex;
+	gap:10px;
+	align-items:center;
+}
+.paste-text-label {
+	padding: 10px 14px;
+	background: rgba(255,255,255,0.04);
+	border-radius: 10px;
+	color: var(--text);
+	cursor: pointer;
+	font-size: 14px;
+	border: 1px solid rgba(255,255,255,0.03);
+	transition: .2s;
+}
+.paste-text-label:hover {
+	background: rgba(255,255,255,0.06);
+	box-shadow: 0 0 16px rgba(120,80,255,0.18);
+}
+/* Upload wrapper & custom file button */
+.upload-wrapper {
+	max-width: 100%;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	background: #0c1521;
+	padding: 12px 14px;
+	border-radius: 12px;
+	border: 1px solid rgba(255,255,255,0.04);
+}
+#pdf-file {
+	display: none;
+}
+/* hide native file input */
+.upload-btn {
+	background: linear-gradient(90deg, var(--accent1), var(--accent2));
+	color: white;
+	padding: 8px 12px;
+	border-radius: 8px;
+	border: none;
+	cursor: pointer;
+	font-weight: 600;
+	box-shadow: 0 6px 22px rgba(120,80,255,0.16);
+}
+.upload-btn:hover {
+	box-shadow: 0 10px 32px rgba(120,80,255,0.28);
+}
+.file-name {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 220px;
+	/* adjust based on your panel width */
+}
+/* ---------- PDF preview ---------- */
+.pdf-preview {
+	background: rgba(255,255,255,0.02);
+	border-radius:10px;
+	padding: 10px;
+	border: 1px solid rgba(255,255,255,0.03);
+	margin-top:8px;
+	margin-bottom:8px;
+}
+.pdf-preview.hidden {
+	display:none;
+}
+.pdf-title {
+	font-size:14px;
+	color:var(--text);
+	margin-bottom:6px;
+}
+.pdf-progress {
+	width:100%;
+	height:8px;
+	background: rgba(255,255,255,0.03);
+	border-radius: 999px;
+	overflow:hidden;
+}
+.pdf-progress-bar {
+	height:100%;
+	width:0%;
+	background: linear-gradient(90deg, var(--accent1), var(--accent2));
+	transition: width .3s ease;
+}
+/* ---------- Textarea (premium) ---------- */
+#text-input {
+	width:100%;
+	min-height: 220px;
+	max-height: 350px;
+	background: rgba(255,255,255,0.02);
+	border-radius: 14px;
+	padding: 14px 16px;
+	border: 1px solid rgba(255,255,255,0.05);
+	color: var(--text);
+	font-size: 15px;
+	line-height: 1.55;
+	resize: vertical;
+	overflow-y: auto;
+	overflow-x: hidden;
+	/* prevent horizontal scroll */
+	backdrop-filter: blur(4px);
+	transition: border .2s ease, box-shadow .2s ease, background .2s ease;
+}
+#text-input::placeholder {
+	color: rgba(180,185,210,0.45);
+}
+#text-input:focus {
+	outline: none;
+	border: 1px solid var(--accent1);
+	box-shadow: 0 0 20px rgba(130,90,255,0.28);
+	background: rgba(255,255,255,0.04);
+}
+/* ---------- CTA ---------- */
+.glow-cta {
+	padding: 12px 18px;
+	border-radius: 12px;
+	background: linear-gradient(90deg, var(--accent1), var(--accent2));
+	color: white;
+	border: none;
+	font-weight: 700;
+	cursor: pointer;
+	box-shadow: 0 14px 36px rgba(127,91,255,0.12);
+}
+.glow-cta:hover {
+	transform: translateY(-3px);
+	filter: saturate(1.05);
+}
+/* ---------- Output panel ---------- */
+.output-panel {
+	flex: 1;
+	min-height: 540px;
+	display:flex;
+	flex-direction:column;
+}
+/* OUTPUT HEADER FIX */
+.output-header {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	margin-bottom: 16px;
+}
+/* Icon box */
+.output-icon {
+	width: 46px;
+	height: 46px;
+	border-radius: 12px;
+	background: rgba(255, 255, 255, 0.04);
+	border: 1px solid rgba(255, 255, 255, 0.05);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+	padding: 0 !important;
+	overflow: hidden;
+}
+.output-icon img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+/* title + subtitle */
+.output-title-wrap {
+	display: flex;
+	flex-direction: column;
+}
+.output-title {
+	font-size: 20px;
+	font-weight: 800;
+	color: var(--text);
+}
+.output-sub {
+	color: var(--muted);
+	font-size: 14px;
+	margin-top: 2px;
+}
+.output-area {
+	flex: 1;
+	overflow-y: auto;
+	background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));
+	border-radius:12px;
+	padding:16px;
+	border:1px solid rgba(255,255,255,0.03);
+}
+.output-area.empty {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	color: var(--muted);
+	text-align:center;
+}
+.rendered-summary {
+	font-size:15px;
+	line-height:1.6;
+}
+.rendered-summary ul {
+	margin-left:18px;
+	margin-bottom:12px;
+}
+/* ---------- Output actions ---------- */
+.output-actions {
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	margin-top:12px;
+}
+.ghost {
+	background: transparent;
+	padding:8px 12px;
+	border-radius:10px;
+	border:1px solid rgba(255,255,255,0.04);
+	color:var(--muted);
+}
+.ghost:disabled {
+	opacity:0.5;
+	cursor:not-allowed;
+}
+/* ---------- Toasts ---------- */
+#toast-container {
+	position: fixed;
+	top: 20px;
+	right: 20px;
+	display:flex;
+	flex-direction:column;
+	gap:10px;
+	z-index:120;
+}
+.toast {
+	background: rgba(18,25,40,0.82);
+	border-left: 4px solid var(--accent1);
+	padding: 10px 14px;
+	border-radius:10px;
+	color:white;
+	backdrop-filter: blur(6px);
+	animation: fadeIn .35s;
+}
+@keyframes fadeIn {
+	from {
+		opacity:0;
+		transform: translateX(18px);
+	}
+	to {
+		opacity:1;
+		transform: translateX(0);
+	}
+}
+/* ---------- Loader ---------- */
+.loader-overlay {
+	position: fixed;
+	inset: 0;
+	background: rgba(0,0,0,0.52);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	z-index:200;
+}
+.loader-overlay.hidden {
+	display:none;
+}
+.loader-box {
+	background: rgba(12,16,26,0.9);
+	padding: 18px 20px;
+	border-radius:12px;
+	display:flex;
+	gap:14px;
+	align-items:center;
+	box-shadow: 0 14px 48px rgba(0,0,0,0.6);
+}
+.spinner {
+	width:34px;
+	height:34px;
+	border-radius:50%;
+	border:4px solid rgba(255,255,255,0.08);
+	border-top-color:var(--accent2);
+	animation: spin 1s linear infinite;
+}
+@keyframes spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+/* ---------- Footer ---------- */
+.glass-footer {
+	width:100%;
+	background: rgba(255,255,255,0.02);
+	border-top:1px solid rgba(255,255,255,0.03);
+	backdrop-filter: blur(8px);
+	padding:14px 0;
+	margin-top:28px;
+}
+.footer-inner {
+	text-align:center;
+	color: var(--muted);
+	font-size:13px;
+}
+.footer-inner a {
+	color: var(--accent2);
+	text-decoration:none;
+}
+/* ============================================================NEON PULSE SCROLLBAR (single block)============================================================ */
+::-webkit-scrollbar {
+	width: 12px;
+}
+::-webkit-scrollbar-track {
+	background: rgba(10,12,20,0.72);
+	border-radius: 12px;
+}
+::-webkit-scrollbar-thumb {
+	background: linear-gradient(180deg, #9f73ff, #6f4aff);
+	border-radius: 12px;
+	box-shadow: 0 0 14px rgba(150,90,255,0.8);
+	animation: neonPulse 2.2s infinite ease-in-out;
+}
+::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(180deg, #b98aff, #8a5dff);
+}
+::-webkit-scrollbar-thumb:active {
+	background: #caa2ff;
+}
+@keyframes neonPulse {
+	0% {
+		box-shadow: 0 0 10px rgba(110,70,255,0.7);
+	}
+	50% {
+		box-shadow: 0 0 22px rgba(150,100,255,1);
+	}
+	100% {
+		box-shadow: 0 0 10px rgba(110,70,255,0.7);
+	}
+}
+/* Firefox */
+* {
+	scrollbar-color: #9f73ff rgba(10,12,20,0.72);
+	scrollbar-width: thin;
+}
+/* ---------- Responsive ---------- */
+@media (max-width:980px) {
+	.dashboard {
+		flex-direction: column;
+		padding: 12px;
+	}
+	.controls-panel, .output-panel {
+		width: 100%;
+	}
+	#text-input {
+		height: 240px;
+	}
+}
+#download-summary {
+	transition: all 0.25s ease;
+}
+#download-summary:not(:disabled):hover {
+	background: linear-gradient(90deg, var(--accent1), var(--accent2));
+	color: white;
+	box-shadow: 0 0 16px rgba(120, 80, 255, 0.45);
+	transform: translateY(-2px);
+}

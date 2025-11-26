@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>NoteForge AI</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="stylesheet" href="/static/styles.css" />
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <script defer src="/static/script.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-left">
+      <img src="/static/logo.png" class="app-icon" />
+
+
+      <div>
+       <div class="brand-title">
+         NoteForge <span class="accent-ai">AI</span>
+       </div>
+
+        <div class="brand-sub">AI Notes Summarizer</div>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <a class="github-btn" href="https://github.com/Nisarg0007" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M12 .5A11.5 11.5 0 0 0 .5 12c0 5.08 3.29 9.38 7.86 10.9.58.11.79-.25.79-.56v-2.05c-3.2.7-3.87-1.54-3.87-1.54-.52-1.33-1.27-1.68-1.27-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.67 1.25 3.32.96.1-.75.4-1.25.72-1.53-2.56-.29-5.26-1.28-5.26-5.72 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.47.11-3.07 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 2.87-.39c.97 0 1.95.13 2.87.39 2.19-1.5 3.15-1.18 3.15-1.18.62 1.6.23 2.78.11 3.07.73.81 1.18 1.84 1.18 3.1 0 4.45-2.7 5.43-5.27 5.72.41.35.77 1.05.77 2.12v3.14c0 .31.21.68.8.56A11.5 11.5 0 0 0 12 .5z"/>
+        </svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="dashboard">
+    <!-- LEFT: Controls -->
+    <section class="panel controls-panel floating">
+      <h3 class="panel-title">Length</h3>
+      <div id="length-tabs" class="option-row">
+        <button class="option active" data-value="short">Short</button>
+        <button class="option" data-value="medium">Medium</button>
+        <button class="option" data-value="long">Detailed</button>
+      </div>
+
+      <h3 class="panel-title">Format</h3>
+      <div id="format-tabs" class="option-row">
+        <button class="option active" data-value="bullets">Bullets</button>
+        <button class="option" data-value="paragraphs">Paragraphs</button>
+      </div>
+
+      <div class="input-tabs" style="display:flex;gap:10px;align-items:center;margin-top:6px;">
+        <div id="paste-trigger" class="paste-text-label">Paste Text</div>
+
+        <div class="upload-wrapper" style="margin-left:6px;">
+          <button id="upload-trigger" class="upload-btn">📄 Upload PDF</button>
+          <input id="pdf-file" type="file" accept="application/pdf" />
+          <span id="file-name" class="file-name">No file chosen</span>
+        </div>
+      </div>
+
+      <div id="pdf-preview" class="pdf-preview hidden">
+        <div class="pdf-title">📄 <span id="pdf-name"></span></div>
+        <div class="pdf-progress">
+          <div id="pdf-progress-bar" class="pdf-progress-bar"></div>
+        </div>
+      </div>
+
+      <textarea id="text-input" placeholder="Paste your notes here... (Markdown supported)"></textarea>
+
+      <button id="summarize-btn" class="glow-cta">⚡ Summarize Now</button>
+    </section>
+
+    <!-- RIGHT: Output -->
+    <section class="panel output-panel floating">
+    <div class="output-header">
+        <div class="output-icon">
+            <img src="/static/logo-icon.png" alt="AI Icon" class="app-icon">
+        </div>
+
+        <div class="output-title-wrap">
+            <div class="output-title">AI Output</div>
+            <div class="output-sub">Your summarized content appears here.</div>
+        </div>
+    </div>
+
+
+      <div id="output-area" class="output-area empty">
+        <div class="empty-state">
+          <h4>Ready to summarize</h4>
+          <p>Paste content or upload a PDF.</p>
+        </div>
+      </div>
+
+      <div class="output-actions">
+        <button id="download-summary" class="ghost" disabled>⬇️ Download</button>
+
+        <div class="progress-wrap">
+          <div class="progress" id="progress">
+            <div id="progress-bar" class="progress-bar"></div>
+          </div>
+          <div id="progress-text" class="progress-text"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast-container"></div>
+
+  <div id="loader-overlay" class="loader-overlay hidden">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <div id="loader-text">Summarizing...</div>
+    </div>
+  </div>
+
+  <footer class="glass-footer">
+    <div class="footer-inner">
+      <p>Built by <strong>Nisarg Amit Gandhi</strong> • <a href="https://github.com/Nisarg0007" target="_blank">GitHub</a></p>
+      <p>NoteForge AI — AI Notes Summarizer</p>
+    </div>
+  </footer>
+</body>
+</html>
